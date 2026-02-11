@@ -118,7 +118,7 @@ export const Step4Expectations: React.FC<Step4ExpectationsProps> = ({
                   checked={(data.motivos || []).includes(motivo.value)}
                   onChange={() => handleMotivosChange(motivo.value)}
                   disabled={
-                    !!(data.motivos || []).length >= 3 &&
+                    (data.motivos || []).length >= 3 &&
                     !(data.motivos || []).includes(motivo.value)
                   }
                   className="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mt-0.5"
