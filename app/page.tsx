@@ -1,7 +1,12 @@
+'use client';
+
 import React from 'react';
 import { BookOpen, Sparkles, Target, Check, Star } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 export default function CognitivaLanding() {
+  const router = useRouter();
+  
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       {/* Header */}
@@ -11,7 +16,10 @@ export default function CognitivaLanding() {
             <BookOpen className="w-8 h-8 text-blue-600" />
             <span className="text-2xl font-bold text-blue-600">Cognitiva</span>
           </div>
-          <button className="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition">
+          <button 
+            onClick={() => router.push('/onboarding')}
+            className="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition"
+          >
             Empezar Gratis
           </button>
         </div>
@@ -33,7 +41,10 @@ export default function CognitivaLanding() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-          <button className="bg-blue-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-blue-700 transition shadow-lg">
+          <button 
+            onClick={() => router.push('/onboarding')}
+            className="bg-blue-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-blue-700 transition shadow-lg"
+          >
             Prueba 7 días gratis
           </button>
           <button className="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg border-2 border-blue-600 hover:bg-blue-50 transition">
@@ -159,6 +170,7 @@ export default function CognitivaLanding() {
               "Dashboard de progreso",
               "Soporte por email"
             ]}
+            onSelect={() => router.push('/onboarding')}
           />
           <PricingCard
             name="Trimestral"
@@ -172,6 +184,7 @@ export default function CognitivaLanding() {
               "Ahorra 17%"
             ]}
             highlighted={true}
+            onSelect={() => router.push('/onboarding')}
           />
           <PricingCard
             name="Anual"
@@ -184,6 +197,7 @@ export default function CognitivaLanding() {
               "Soporte prioritario",
               "Ahorra 33%"
             ]}
+            onSelect={() => router.push('/onboarding')}
           />
         </div>
       </section>
@@ -197,7 +211,10 @@ export default function CognitivaLanding() {
           <p className="text-xl mb-8">
             7 días de prueba gratis. No se requiere tarjeta de crédito.
           </p>
-          <button className="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition shadow-xl">
+          <button 
+            onClick={() => router.push('/onboarding')}
+            className="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition shadow-xl"
+          >
             Crear cuenta gratis
           </button>
           <p className="text-sm mt-4 text-blue-100">
@@ -266,12 +283,13 @@ function BenefitItem({ text }: { text: string }) {
   );
 }
 
-function PricingCard({ name, price, period, features, highlighted }: {
+function PricingCard({ name, price, period, features, highlighted, onSelect }: {
   name: string;
   price: string;
   period: string;
   features: string[];
   highlighted?: boolean;
+  onSelect: () => void;
 }) {
   return (
     <div className={`rounded-2xl p-8 ${highlighted ? 'bg-blue-600 text-white shadow-2xl scale-105' : 'bg-white shadow-lg'}`}>
@@ -297,11 +315,14 @@ function PricingCard({ name, price, period, features, highlighted }: {
           </li>
         ))}
       </ul>
-      <button className={`w-full py-3 rounded-full font-semibold transition ${
-        highlighted 
-          ? 'bg-white text-blue-600 hover:bg-gray-100' 
-          : 'bg-blue-600 text-white hover:bg-blue-700'
-      }`}>
+      <button 
+        onClick={onSelect}
+        className={`w-full py-3 rounded-full font-semibold transition ${
+          highlighted 
+            ? 'bg-white text-blue-600 hover:bg-gray-100' 
+            : 'bg-blue-600 text-white hover:bg-blue-700'
+        }`}
+      >
         Seleccionar plan
       </button>
     </div>
