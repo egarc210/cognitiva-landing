@@ -32,7 +32,7 @@ export const OnboardingFlow: React.FC = () => {
     try {
       await submitOnboarding();
       // Redirigir al cuestionario de clasificación del estudiante
-      router.push('/cuestionario-estudiante');
+      router.push('/cuestionario');
     } catch (error) {
       console.error('Error al completar onboarding:', error);
       alert('Hubo un error al guardar tus datos. Por favor intenta de nuevo.');

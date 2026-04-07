@@ -14,6 +14,7 @@ interface Step6ConfirmationProps {
   onDashboard: () => void;
 }
 
+
 export const Step6Confirmation: React.FC<Step6ConfirmationProps> = ({
   data,
   isLoading,
